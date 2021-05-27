@@ -1,5 +1,6 @@
 package com.example.healthydevelopers.interfaz;
 
+import com.example.healthydevelopers.model.Message;
 import com.example.healthydevelopers.model.User;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public interface HealthyDevelopers {
 
     @GET("users")
     Call<List<User>> getUsers();
+
+    @GET("login/mail={mail}&password={password}")
+    Call<Message> message(@Query("mail") String mail, @Query("password") String password);
 
     @GET("users/{mail}")
     Call<User> find(@Query("mail") String mail);

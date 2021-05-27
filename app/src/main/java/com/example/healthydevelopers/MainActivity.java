@@ -12,7 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.healthydevelopers.interfaz.HealthyDevelopers;
+import com.example.healthydevelopers.model.Message;
 import com.example.healthydevelopers.model.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import java.util.List;
 
@@ -39,10 +42,51 @@ public class MainActivity extends AppCompatActivity {
         btnLoginMain = findViewById(R.id.btnLoginMain);
         tvMainTitle =  findViewById(R.id.tvMainTitle);
 
-        finishLogin();
+        loginThatIs(txtMailLogin.getText().toString(), txtPasswordLogin.getText().toString());
+        //finishLogin();
         //getUsers();
         //findUser();
         signinUser();
+
+
+    }
+    private void loginThatIs(String mail, String password){
+        btnLoginMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Retrofit retrofit =  new Retrofit.Builder()
+                        .baseUrl("https://healthydevelopers.herokuapp.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                HealthyDevelopers healthyDevelopers = retrofit.create(HealthyDevelopers.class);
+                Call<Message> call = healthyDevelopers.message(mail, password);
+
+                /*call.enqueue(new Callback<Message>() {
+                    @Override
+                    public void onResponse(Call<Message> call, Response<Message> response) {
+                        if (!response.isSuccessful()){ //nos da un código de respuesta
+                            tvMainTitle.setText("Codigo: "+response.code());
+                            return;
+                        }
+                        Toast.makeText(getApplicationContext(), "wui...", Toast.LENGTH_LONG).show();
+                        Message message = response.body();
+                        if (message.getMessage().equals("Correct")){
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                    @Override
+                    public void onFailure(Call<Message> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Error "+t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                 */
+            }
+        });
 
     }
 
@@ -115,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void findUserInfo(String mail){
         Retrofit retrofit =  new Retrofit.Builder()
                 .baseUrl("https://healthydevelopers.herokuapp.com/")

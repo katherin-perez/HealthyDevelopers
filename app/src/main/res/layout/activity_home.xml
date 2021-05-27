@@ -55,7 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/gradient"
+        android:background="@drawable/gradient_vertical"
         android:drawableTop="@drawable/task"
         android:fontFamily="serif"
         android:padding="8dp"

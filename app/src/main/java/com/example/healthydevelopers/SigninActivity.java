@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ public class SigninActivity extends AppCompatActivity {
     Spinner spinnerSex;
     Button btnSigninUser;
     ArrayList<User> usersList = new ArrayList<>();
+    String[] sex = {"Mujer","Hombre"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,23 @@ public class SigninActivity extends AppCompatActivity {
         spinnerSex = findViewById(R.id.spinnerSex);
         btnSigninUser = findViewById(R.id.btnSigninUser);
 
-        String[] sex = {"Mujer","Hombre"};
         //Crear objeto para comunicar el codigo con el spinner del archico de diseño
         ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sex);
         spinnerSex.setAdapter(adapter);
+        spinnerSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                char genero = spinnerSex.getSelectedItemPosition() == 0 ? 'M' : 'H';
+                Toast.makeText(getApplicationContext(), genero + "",Toast.LENGTH_LONG).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         createUser();
+
     }
 
     public void createUser() {
@@ -54,14 +67,14 @@ public class SigninActivity extends AppCompatActivity {
                 if (!txtMailSingin.getText().toString().equals("")  && !txtPasswordSingin.getText().toString().equals("") && !txtName.getText().toString().equals("")
                         && !txtLastName.getText().toString().equals("")) {
                     if (!txtAddress.getText().toString().equals("") && !txtPhoneNumber.getText().toString().equals("")) {
-                        user = new User(1, txtName.getText().toString(), txtLastName.getText().toString(), ' ', txtMailSingin.getText().toString(),
+                        user = new User(1, txtName.getText().toString(), txtLastName.getText().toString(), spinnerSex.getSelectedItemPosition() == 0 ? 'M' : 'H', txtMailSingin.getText().toString(),
                                 txtPasswordSingin.getText().toString(), txtPhoneNumber.getText().toString(), txtAddress.getText().toString());
                     }else {
                         user = new User(1, txtName.getText().toString(), txtLastName.getText().toString(), ' ', txtMailSingin.getText().toString(),
                                 txtPasswordSingin.getText().toString());
                     }
                     usersList.add(user);
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     Toast.makeText(getApplicationContext(), "Usuario Registrado Exitosamente", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Información incompleta", Toast.LENGTH_LONG).show();

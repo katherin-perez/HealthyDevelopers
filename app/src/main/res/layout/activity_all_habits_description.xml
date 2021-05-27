@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HabitsList">
+    tools:context=".AllHabitsDescription">
 
-    <ListView
-        android:id="@+id/lstHabits"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="223dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
