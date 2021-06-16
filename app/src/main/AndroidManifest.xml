@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthyDevelopers">
-        <activity android:name=".AllHabitsDescription"></activity>
-        <activity android:name=".HabitsList" />
+        <activity android:name=".UserProfile"></activity>
+        <activity android:name=".CommunityList" />
+        <activity android:name=".UpdateProgress" />
+        <activity android:name=".UserHabitsList" />
+        <activity android:name=".AllHabitsDescription" />
+        <activity android:name=".AllHabitsList" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".SigninActivity" />
         <activity
@@ -24,6 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

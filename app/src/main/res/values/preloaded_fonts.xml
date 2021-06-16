@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/abhaya_libre</item>
+        <item>@font/aclonica</item>
+        <item>@font/acme</item>
+        <item>@font/actor</item>
+        <item>@font/alegreya_sc_bold_italic</item>
+        <item>@font/alice</item>
+        <item>@font/amarante</item>
+        <item>@font/annie_use_your_telescope</item>
+        <item>@font/boogaloo</item>
+        <item>@font/carter_one</item>
+        <item>@font/coming_soon</item>
+        <item>@font/montserrat</item>
+        <item>@font/yatra_one</item>
+    </array>
+</resources>

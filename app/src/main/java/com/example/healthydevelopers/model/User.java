@@ -10,15 +10,6 @@ public class User {
     private String phone;
     private String direction;
 
-    public User(int id, String name, String last_name, char sex, String mail, String password) {
-        this.id = id;
-        this.name = name;
-        this.last_name = last_name;
-        this.sex = sex;
-        this.mail = mail;
-        this.password = password;
-    }
-
     public User(int id, String name, String last_name, char sex, String mail, String password, String phone, String direction) {
         this.id = id;
         this.name = name;
